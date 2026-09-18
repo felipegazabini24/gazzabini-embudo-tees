@@ -1,0 +1,214 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Embudo Gazzabini Tees</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0f1115; --panel:#171a21; --panel2:#1d212a; --line:#2a2f3a; --dot:#232733;
+  --text:#e8eaf0; --muted:#8a91a3; --faint:#5d6477;
+  --blue:#3b82f6; --purple:#8b5cf6; --green:#22c55e; --red:#ef4444; --amber:#f59e0b; --gold:#eab308; --orange:#f97316;
+  color-scheme:dark;
+}
+html,body{background:var(--bg);color:var(--text)}
+body{font-family:"Archivo",system-ui,sans-serif;padding-inline:16px;padding-block:20px 40px}
+.wrap{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+h1{margin:0;font-size:1.5rem;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+h1 span{color:var(--muted);font-weight:500}
+.sub{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{font:600 .8rem "JetBrains Mono",monospace;background:var(--panel);color:var(--muted);border:1px solid var(--line);padding:8px 14px;border-radius:8px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.tab:focus-visible,.reset:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.board{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.boardbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.eyebrow{font:600 .7rem "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.budget{font:600 .8rem "JetBrains Mono",monospace;color:var(--gold);background:#2a2410;border:1px solid #4a3d12;padding:4px 10px;border-radius:999px}
+.hint{font:.72rem "JetBrains Mono",monospace;color:var(--faint)}
+.reset{font:.72rem "JetBrains Mono",monospace;background:none;border:1px solid var(--line);color:var(--muted);padding:4px 10px;border-radius:6px;cursor:pointer}
+.scroll{overflow-x:auto}
+.canvas{position:relative;width:1180px;height:600px;
+  background-image:radial-gradient(var(--dot) 1.2px,transparent 1.2px);background-size:22px 22px}
+svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.node{position:absolute;width:140px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:grab;touch-action:none;user-select:none}
+.node:active{cursor:grabbing}
+.shape{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font:700 .78rem "JetBrains Mono",monospace;color:#fff;border:2px solid rgba(255,255,255,.18);box-shadow:0 0 0 4px rgba(0,0,0,.25)}
+.shape.diamond{border-radius:8px;width:40px;height:40px;margin:6px;transform:rotate(45deg)}
+.shape.diamond b{transform:rotate(-45deg);font-size:1rem}
+.shape.free{background:transparent;border:2px dashed var(--purple);color:var(--purple)}
+.lbl{background:rgba(15,17,21,.88);padding:2px 6px;border-radius:4px;font-size:.78rem;font-weight:700;text-align:center;line-height:1.25}
+.lbl small{display:block;font:400 .66rem "JetBrains Mono",monospace;color:var(--muted);margin-top:2px}
+.node.new .shape{outline:2px solid var(--gold);outline-offset:4px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;padding:10px 16px;border-top:1px solid var(--line);font:.7rem "JetBrains Mono",monospace;color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:0;border-top:2px solid;vertical-align:middle;margin-right:6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.card .eyebrow{color:var(--c,var(--muted))}
+.card h3{margin:0;font-size:.98rem;font-weight:700}
+.card p,.card li{margin:0;font-size:.85rem;line-height:1.5;color:#c3c8d4}
+.card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px}
+.quote{font-family:"JetBrains Mono",monospace;font-size:.78rem;background:var(--panel2);border-radius:6px;padding:8px 10px;color:var(--text);line-height:1.5}
+#cards{display:flex;flex-direction:column;gap:14px}
+.sect{font:600 .72rem "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .2s}.card:hover{border-color:#3a4150}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Embudo Gazzabini Tees <span>· Oversized · Meta Ads</span></h1>
+      <p class="sub">Plan con ₲10.000/día: se empieza chico y se suma una etapa cuando las ventas lo pagan.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="t1" data-m="1" aria-selected="true">Mes 1 · ahora</button>
+      <button class="tab" role="tab" id="t2" data-m="2" aria-selected="false">Mes 2</button>
+      <button class="tab" role="tab" id="t3" data-m="3" aria-selected="false">Mes 3+</button>
+    </div>
+  </header>
+
+  <section class="board">
+    <div class="boardbar">
+      <span class="eyebrow" id="stage">Tráfico frío → WhatsApp</span>
+      <span class="budget" id="budget"></span>
+      <span class="hint">Arrastrá los nodos · <button class="reset" id="reset">Reordenar</button></span>
+    </div>
+    <div class="scroll"><div class="canvas" id="canvas"><svg class="edges" id="edges"></svg></div></div>
+    <div class="legend">
+      <span><i style="border-color:#6b7280"></i>flujo</span>
+      <span><i style="border-color:var(--green)"></i>sí</span>
+      <span><i style="border-color:var(--red)"></i>no</span>
+      <span><i style="border-color:var(--orange);border-top-style:dashed"></i>vuelve / se repite</span>
+      <span><i style="border-color:var(--purple);border-top-style:dashed"></i>gratis (orgánico)</span>
+      <span><i style="border-color:var(--gold)"></i>borde dorado = nuevo este mes</span>
+    </div>
+  </section>
+
+  <div id="cards"></div>
+</div>
+
+<script>
+const C={blue:'#3b82f6',purple:'#8b5cf6',green:'#22c55e',red:'#ef4444',amber:'#f59e0b',gold:'#eab308',orange:'#f97316',grey:'#6b7280'};
+// base nodes (Mes 1)
+const BASE=[
+ {id:'reels',x:80,y:70,t:'Reels org.',s:'gratis',ic:'RL',free:1},
+ {id:'tiktok',x:80,y:180,t:'TikTok org.',s:'gratis',ic:'TT',free:1},
+ {id:'perfil',x:280,y:125,t:'Perfil IG',s:'bio + link WA',ic:'IG',c:C.purple},
+ {id:'camp',x:80,y:420,t:'Campaña Mensajes',s:'1 conjunto · público abierto',ic:'₲',c:C.blue},
+ {id:'bleach',x:280,y:360,t:'Campeón: Bleach',s:'no se toca',ic:'B',c:C.green},
+ {id:'jjk',x:280,y:490,t:'Desafiante: JJK',s:'cambia cada semana',ic:'JJK',c:C.orange},
+ {id:'eval',x:470,y:490,t:'¿Gastó ₲15–20k sin mensajes?',ic:'?',dia:1},
+ {id:'repl',x:660,y:520,t:'Nuevo desafiante',s:'diseño / formato / oferta',ic:'↻',c:C.red},
+ {id:'wa',x:660,y:270,t:'WhatsApp conversación',s:'responder en < 5 min',ic:'WA',c:C.green},
+ {id:'compro',x:850,y:270,t:'¿Compró?',ic:'?',dia:1},
+ {id:'venta',x:1060,y:150,t:'Venta cerrada',s:'anotá de qué anuncio vino',ic:'✓',c:C.gold},
+ {id:'seg',x:1060,y:410,t:'Seguimiento WhatsApp',s:'a mano · 24–48 h · gratis',ic:'↺',c:C.orange},
+];
+const BASE_E=[
+ ['reels','perfil','free'],['tiktok','perfil','free'],['perfil','wa'],
+ ['camp','bleach'],['camp','jjk'],['bleach','wa'],['jjk','wa'],
+ ['jjk','eval'],['eval','repl','no','Sí → cambiar'],['repl','camp','back'],
+ ['wa','compro'],['compro','venta','yes','Sí'],['compro','seg','no','No'],['seg','wa','back'],
+];
+const MONTHS={
+ 1:{budget:'₲10.000/día · 100% Mensajes',stage:'Mes 1 · una sola campaña → WhatsApp',nodes:BASE,edges:BASE_E},
+ 2:{budget:'~₲20.000/día · 75% Mensajes · 25% Retarget',stage:'Mes 2 · se suma retarget a quien interactuó',
+    nodes:[...BASE,{id:'mofu',x:470,y:125,t:'Retarget MOFU',s:'interactuaron IG/FB 30 días',ic:'MO',c:C.purple,nw:1}],
+    edges:[...BASE_E.filter(e=>!(e[0]==='perfil'&&e[1]==='wa')),['perfil','mofu'],['mofu','wa']]},
+ 3:{budget:'orientativo: 50% Mensajes · 30% TOFU · 20% Retarget',stage:'Mes 3+ · embudo completo',
+    nodes:[...BASE.map(n=>n.id==='seg'?{...n,t:'Seguimiento + Retarget BOFU',s:'objeción + urgencia real',nw:1}:n),
+      {id:'mofu',x:470,y:125,t:'Retarget MOFU',s:'interactuaron IG/FB 30 días',ic:'MO',c:C.purple},
+      {id:'tofu',x:80,y:295,t:'Anuncio TOFU video',s:'crea público barato',ic:'▶',c:C.blue,nw:1}],
+    edges:[...BASE_E.filter(e=>!(e[0]==='perfil'&&e[1]==='wa')),['perfil','mofu'],['mofu','wa'],['tofu','perfil']]},
+};
+const CARDS={
+1:[
+ {sec:'Semana a semana (el desafiante cambia, el campeón queda)'},
+ {e:'Semana 1',c:C.orange,h:'Otro diseño',p:'Bleach queda. JJK es el desafiante recién creado: dejalo 5–7 días sin tocar nada. Si pierde, entra otro anime (One Piece, Naruto, Demon Slayer).'},
+ {e:'Semana 2',c:C.orange,h:'Otro formato',p:'El diseño ganador pero en otro formato: video con la remera puesta, o primer plano del estampado DTF.'},
+ {e:'Semana 3',c:C.orange,h:'Una oferta',p:'"2 remeras por ₲X" o "Armá la tuya con tu personaje". Sube lo que gasta cada cliente.'},
+ {e:'Semana 4',c:C.gold,h:'Escalar',p:'Con las ventas, subí el presupuesto de a 20% (₲12.000 → ₲14.500…). Nunca de golpe.'},
+ {sec:'Reglas y mensajes'},
+ {e:'Reglas',c:C.red,h:'Cuándo cortar',ul:['No tocar nada los primeros 2 días','Desafiante con ₲15–20k gastados y 0 mensajes → se cambia','Buen costo por mensaje: menos de ₲3.000','El que importa: gasto ÷ remeras vendidas']},
+ {e:'Bienvenida por anuncio',c:C.green,h:'Saber qué anuncio vende',q:['Bleach → "Hola! Quiero la de Bleach"','JJK → "Hola! Quiero la de Jujutsu"']},
+ {e:'Seguimiento · gratis',c:C.orange,h:'A quien preguntó y no compró',q:['"¿Te quedaste con dudas sobre tu diseño? Contanos qué te frenó y te ayudamos a elegir."']},
+],
+2:[
+ {sec:'Qué se suma en el Mes 2'},
+ {e:'Nuevo',c:C.gold,h:'Retarget MOFU',p:'Segundo conjunto, objetivo Mensajes, público: personas que interactuaron con tu IG/FB en los últimos 30 días.'},
+ {e:'Presupuesto',c:C.gold,h:'~₲20.000/día',ul:['75% sigue en la campaña de Mensajes','25% al retarget','El seguimiento por WhatsApp sigue siendo a mano']},
+ {e:'Creativo',c:C.purple,h:'Mensaje de identidad',q:['"¿Ya tenés la remera de tu personaje favorito? En Gazzabini Tees la hacemos a tu medida."']},
+ {e:'Condición para pasar',c:C.green,h:'No es por fecha',p:'Pasás al Mes 2 cuando tenés un ganador claro y las ventas pagan el aumento de presupuesto.'},
+],
+3:[
+ {sec:'Embudo completo'},
+ {e:'Nuevo',c:C.gold,h:'Anuncio TOFU video',p:'Video/Reel ("Así nace tu Bleach: de la tela en blanco a la remera que vas a usar") para llegar a gente nueva barato y llenar el retarget.'},
+ {e:'Nuevo',c:C.gold,h:'Retarget BOFU pagado',p:'A quien escribió y no compró: responde la objeción (precio, talle, confianza) + urgencia real (stock o fecha de entrega).'},
+ {e:'Presupuesto',c:C.gold,h:'Reparto orientativo',ul:['50% Mensajes (sigue vendiendo)','30% TOFU video','20% Retarget MOFU/BOFU']},
+ {e:'Condición para pasar',c:C.green,h:'Solo con ventas estables',p:'Si el Mes 2 no trae ventas constantes, quedate ahí y seguí probando desafiantes.'},
+],
+};
+const canvas=document.getElementById('canvas'),svg=document.getElementById('edges');
+let month=1,pos={};
+function load(){try{pos=JSON.parse(localStorage.getItem('gz-pos')||'{}')}catch(e){pos={}}}
+function save(){try{localStorage.setItem('gz-pos',JSON.stringify(pos))}catch(e){}}
+function P(n){const k=month+':'+n.id;return pos[k]||{x:n.x,y:n.y}}
+function curve(a,b,kind){
+  if(kind==='back'){const d=80;return [[a.x,a.y+26],[a.x,a.y+26+d],[b.x,b.y+26+d],[b.x,b.y+26]];}
+  if(Math.abs(b.x-a.x)<40){const s=b.y>a.y?1:-1;return [[a.x,a.y+26*s],[a.x,a.y+60*s],[b.x,b.y-60*s],[b.x,b.y-26*s]];}
+  const s=b.x>a.x?1:-1,m=(a.x+b.x)/2;return [[a.x+26*s,a.y],[m,a.y],[m,b.y],[b.x-26*s,b.y]];
+}
+function draw(){
+  const M=MONTHS[month],map={};M.nodes.forEach(n=>map[n.id]=P(n));
+  let h='';
+  M.edges.forEach(([f,t,k,l])=>{
+    const p=curve(map[f],map[t],k);
+    const col=k==='yes'?C.green:k==='no'?C.red:k==='back'?C.orange:k==='free'?C.purple:C.grey;
+    const dash=(k==='back'||k==='free')?' stroke-dasharray="6 5"':'';
+    h+=`<path d="M${p[0]} C${p[1]} ${p[2]} ${p[3]}" fill="none" stroke="${col}" stroke-width="2"${dash} opacity=".9"/>`;
+    if(l){const mx=.125*p[0][0]+.375*p[1][0]+.375*p[2][0]+.125*p[3][0],my=.125*p[0][1]+.375*p[1][1]+.375*p[2][1]+.125*p[3][1];
+      h+=`<rect x="${mx-l.length*3.6-6}" y="${my-10}" width="${l.length*7.2+12}" height="18" rx="4" fill="#0f1115" stroke="${col}"/><text x="${mx}" y="${my+3.5}" fill="${col}" font-size="11" text-anchor="middle" font-family="JetBrains Mono,monospace">${l}</text>`;}
+  });
+  svg.innerHTML=h;
+}
+function render(){
+  canvas.querySelectorAll('.node').forEach(n=>n.remove());
+  const M=MONTHS[month];
+  document.getElementById('budget').textContent=M.budget;
+  document.getElementById('stage').textContent=M.stage;
+  M.nodes.forEach(n=>{
+    const el=document.createElement('div');el.className='node'+(n.nw?' new':'');
+    const p=P(n);el.style.left=(p.x-70)+'px';el.style.top=(p.y-26)+'px';
+    const shape=n.dia?`<div class="shape diamond" style="background:${C.amber}"><b>?</b></div>`
+      :n.free?`<div class="shape free">${n.ic}</div>`:`<div class="shape" style="background:${n.c}">${n.ic}</div>`;
+    el.innerHTML=shape+`<div class="lbl">${n.t}${n.s?`<small>${n.s}</small>`:''}</div>`;
+    drag(el,n);canvas.appendChild(el);
+  });
+  draw();
+  const cards=CARDS[month];let h='',open=false;
+  cards.forEach(c=>{
+    if(c.sec){if(open)h+='</div>';h+=`<p class="sect">${c.sec}</p><div class="cards">`;open=true;return;}
+    h+=`<div class="card" style="--c:${c.c}"><span class="eyebrow">${c.e}</span><h3>${c.h}</h3>`+
+      (c.p?`<p>${c.p}</p>`:'')+(c.ul?`<ul>${c.ul.map(x=>`<li>${x}</li>`).join('')}</ul>`:'')+
+      (c.q?c.q.map(x=>`<div class="quote">${x}</div>`).join(''):'')+`</div>`;
+  });
+  if(open)h+='</div>';
+  document.getElementById('cards').innerHTML=h;
+}
+function drag(el,n){
+  el.addEventListener('pointerdown',e=>{
+    el.setPointerCapture(e.pointerId);const s=P(n),sx=e.clientX,sy=e.clientY;
+    const mv=ev=>{const x=Math.max(70,Math.min(1110,s.x+ev.clientX-sx)),y=Math.max(30,Math.min(560,s.y+ev.clientY-sy));
+      pos[month+':'+n.id]={x,y};el.style.left=(x-70)+'px';el.style.top=(y-26)+'px';draw();};
+    const up=()=>{el.removeEventListener('pointermove',mv);el.removeEventListener('pointerup',up);save();};
+    el.addEventListener('pointermove',mv);el.addEventListener('pointerup',up);
+  });
+}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  month=+b.dataset.m;document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t===b));render();
+}));
+document.getElementById('reset').addEventListener('click',()=>{Object.keys(pos).forEach(k=>{if(k.startsWith(month+':'))delete pos[k]});save();render();});
+load();render();
+</script>
+
+</body></html>
